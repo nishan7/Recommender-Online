@@ -1,0 +1,78 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+
+<!-- Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous"
+></script>
+<!-- CSS -->
+<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+        crossorigin="anonymous"
+/>
+
+
+<script type="text/javascript">
+    function junk() {
+        var arr = $('#selUser').select2('data');
+        alert(arr[0].id + arr[0].text)
+        var test = {}
+        for (var i in arr) {
+            test[arr[i]['id']]=arr[i]['text']
+        }
+
+        var cars = {
+            'one': 'two',
+            'three': 'four'
+        };
+        var json_arr = JSON.stringify(arr);
+        $.post("/request", test, function () {
+        }, 'json');
+    }
+
+
+    $(document).ready(function () {
+        // Initialize select2
+        $("#selUser").select2();
+
+        $("#selUser").on("select2:selecting", function (e) {
+            // what you would like to happen
+
+            var userid = $("#selUser").val();
+            $("#result").html("id " + userid);
+        });
+    });
+
+</script>
+
+<div>
+    <div>
+        <label>Select</label>
+        <select
+                class=" select2 select2-hidden-accessible"
+                id="selUser"
+                multiple=""
+                data-placeholder="Select a State"
+                style="width: 100%"
+                tabindex="-1"
+                aria-hidden="true"
+        >
+            {% for value, text in data %} }}
+                <option value="{{ value }}">{{ text }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <!-- /.form-group -->
+</div>
+
+
+<input type="button" onClick="junk();" value="Seleted option" id="but_read"/>
+
+<br/>
+<div id="result"></div>
