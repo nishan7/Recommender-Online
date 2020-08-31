@@ -6,7 +6,7 @@ https://recsys-app.herokuapp.com/
 
 It is based on my previous project IMDb-Recommender https://github.com/nishan7/IMDb-Recommender
 
-It is the python/flask website used to recommend movies based on other movie/
+It is the python/flask website used to recommend movies based on other movie
  your like.
 
 It is based on the movieLens dataset. https://grouplens.org/datasets/movielens/
