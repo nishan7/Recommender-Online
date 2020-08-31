@@ -17,7 +17,7 @@ Then based on user's personal movies choice and cosine similarity of those movie
 
 Python flask is used to create the interface.
 
-TMDb Database is used to obtain the poster images 
+TMDb Database is used to obtain the poster images.
 
 
 ### Features
