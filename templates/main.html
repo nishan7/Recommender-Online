@@ -85,8 +85,10 @@
             .done(function (recom_lst) {
                 console.log(recom_lst)
                 $('#recom-results').empty();
+
                 for (idx in recom_lst) {
                     console.log(recom_lst[idx][0] + ' ' + recom_lst[idx][1])
+
                     $('#recom-results').append(`<a target="_blank" href="${recom_lst[idx][1]}" class="list-group-item align">
                         <span class="image-parent right">
                           <img src="${recom_lst[idx][2]}" class="img-fluid" alt="quixote">
@@ -149,7 +151,7 @@
         <button type="button" class="btn btn-lg btn-primary" align="center" onClick="searched();">Recommend!!</button>
     </div>
     <br>
-
+    <div><h2 id="info"></h2></div>
     <div class="list-group text-left" id="recom-results">
     </div>
 
