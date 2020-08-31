@@ -1,27 +1,25 @@
-from flask import Flask, render_template, redirect, url_for, request
+import urllib
+
+from flask import Flask, render_template, redirect, url_for, request, Response, jsonify
 import recsys
 app = Flask(__name__)
-# @app.route('/')
-# def hello():
-#     return 'Hello'
 
-
+data = recsys.TITLES
 @app.route('/')
-def hello():
-    # return "Hello World!"
-    # data = [(1,'nishan'), (2, 'paudel'), (3, 'upadhyay'), (5,'today'), (6,'soory'),(7,'back to work'),(8,'right now')]
-    data = recsys.TITLES
+def main():
     return  render_template('main.html', data=data)
 
 @app.route('/request', methods=['POST','GET'])
 def recom_query():
-    print('hello')
-    print(request.form)
-    return redirect(url_for('hello'))
+    idxs = [int(i) for i,title in request.form.items()]
+    recoms = recsys.get_recoms(idxs)
+    recoms_lst = [(title, 'https://google.com/search?q=' + urllib.parse.quote(title),img_link) for title,img_link in recoms]
+    return jsonify(recoms_lst)
 
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
 
 if __name__ == '__main__':
     app.run()
+
+
+
+# https://image.tmdb.org/t/p/w154

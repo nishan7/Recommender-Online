@@ -13,6 +13,21 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
+
+    {#    Bootstrap#}
+    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"#}
+    {#          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
+    {##}
+    {#    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"#}
+    {#            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"#}
+    {#            crossorigin="anonymous"></script>#}
+    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"#}
+    {#            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"#}
+    {#            crossorigin="anonymous"></script>#}
+    {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"#}
+    {#            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"#}
+    {#            crossorigin="anonymous"></script>#}
+
     <script>(function () {
         // injected DOM script is not a content script anymore,
         // it can modify objects and functions of the page
@@ -55,36 +70,40 @@
 <script type="text/javascript">
     function searched() {
         var arr = $('#multiple_dropdown').select2('data');
-        alert(arr[0].id + arr[0].text)
-        var test = {}
-        for (var i in arr) {
-            test[arr[i]['id']] = arr[i]['text']
+        if (arr.length < 1) {
+            return
+
         }
 
-        var cars = {
-            'one': 'two',
-            'three': 'four'
-        };
-        var json_arr = JSON.stringify(arr);
-        $.post("/request", test, function () {
-        }, 'json');
+        var selected_titles = {}
+        for (var i in arr) {
+            selected_titles[arr[i]['id']] = arr[i]['text']
+        }
+
+
+        $.post("/request", selected_titles)
+            .done(function (recom_lst) {
+                console.log(recom_lst)
+                $('#recom-results').empty();
+                for (idx in recom_lst) {
+                    console.log(recom_lst[idx][0] + ' ' + recom_lst[idx][1])
+                    $('#recom-results').append(`<a target="_blank" href="${recom_lst[idx][1]}" class="list-group-item align">
+                        <span class="image-parent right">
+                          <img src="${recom_lst[idx][2]}" class="img-fluid" alt="quixote">
+                      </span>
+                    <span>${recom_lst[idx][0]}
+                    <span>
+
+                    </a>`)
+                }
+            });
+
     }
-
-
-    {#$(document).ready(function () {#}
-    {#    // Initialize select2#}
-    {#    $("#selUser").select2();#}
-    {##}
-    {#    $("#selUser").on("select2:selecting", function (e) {#}
-    {#        // what you would like to happen#}
-    {##}
-    {#        var userid = $("#selUser").val();#}
-    {#        $("#result").html("id " + userid);#}
-    {#    });#}
 
 
 </script>
 
+{# Top Header#}
 <header class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -94,7 +113,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Recommender</a>
+            <a class="navbar-brand" href="https://github.com/nishan7/Recommender-Online">Recommender</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">
@@ -109,14 +128,13 @@
     </div>
 </header>
 
-
+{#Searh Bar AREA#}
 <div class="container text-center">
     <h1 class="jumbotron-title" align="center">Select movies that you love ❤</h1>
     <br>
 
     <div class="form-group">
-        {#        <label for="multiple" class="control-label">Select2 multi select</label>#}
-        <select id="multiple_dropdown" data-placeholder="Select the movies"
+        <select id="multiple_dropdown" data-placeholder="Select 3 or more movies"
                 class="form-control select2-multiple select2-hidden-accessible" multiple="" tabindex="-1"
                 aria-hidden="true">
             {% for value, text in data %} }}
@@ -125,18 +143,29 @@
 
         </select>
     </div>
-    <button type="button" class="btn btn-lg btn-primary" align="center" onClick="searched();">Recommend!!</button>
+
+
+    <div>
+        <button type="button" class="btn btn-lg btn-primary" align="center" onClick="searched();">Recommend!!</button>
+    </div>
+    <br>
+
+    <div class="list-group text-left" id="recom-results">
+    </div>
 
 
 </div>
 
 
+{#Bottom Footer#}
 <div class="footer">
     <div class="container">
         <ul class="footer-links">
             {#            <li class="version"><span class="hidden-xs">Currently</span> v0.1.0-beta.10</li>#}
             {#            <li>·</li>#}
-            <li><a href="#">GitHub</a></li>
+            <li><a href="https://github.com/nishan7/Recommender-Online">GitHub Link</a></li>
+            <li><a href="https://linkedlin.com/in/paudelnishan">LinkedIn Link</a></li>
+
             {#            <li>·</li>#}
         </ul>
 
