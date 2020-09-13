@@ -3,7 +3,7 @@
 ### Live Website
 https://recsys-app.herokuapp.com/
 
-It is based on my previous project IMDb-Recommender https://github.com/nishan7/IMDb-Recommender
+It is based on my previous project IMDb-Recommender https://github.com/nishan7/IMDb-Recommender.
 
 It is the python/flask website used to recommend movies based on other movie
  your like.
