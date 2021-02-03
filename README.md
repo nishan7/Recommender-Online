@@ -3,6 +3,9 @@
 ### Live Website
 https://recsys-app.herokuapp.com/
 
+Rest API:
+https://recys-app.herokuapp.com/api/?param={"movie_id":[69757,69516]}
+
 It is based on my previous project IMDb-Recommender https://github.com/nishan7/IMDb-Recommender.
 
 It is the python/flask website used to recommend movies based on other movie

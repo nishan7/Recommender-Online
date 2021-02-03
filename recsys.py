@@ -18,9 +18,11 @@ movieId2TMDbid = reusables.load_json('./data/movieId2TMDbid.json')
 # Titles, This array is sent to front end as choices
 TITLES = sorted(list(movieId2title.items()), key=lambda x: x[1])
 
+print(movieId2title)
 
 # Like titles are those titles that are liked by the user
 def get_recoms(liked_titles, no_of_recoms=10):
+
     liked_titles = [movieId2idx[str(i)] for i in liked_titles if str(i) in movieId2idx.keys()]
     number_of_titles = len(liked_titles)
     sim = similarities[liked_titles].sum(axis=0).argsort()[::-1][number_of_titles:no_of_recoms + number_of_titles]
