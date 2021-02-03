@@ -3,3 +3,4 @@ reusables==0.9.6
 requests==2.22.0
 numpy==1.20.0
 requests_cache==0.5.2
+gunicorn
