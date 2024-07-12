@@ -4,10 +4,10 @@
 https://recsys-app.herokuapp.com/
 
 Rest API:
-https://recsys-app.herokuapp.com/api/?param={"movie_id":[tmdb_id1,tmdb_id2,...]}
+https://intelligent-aluminum-poison.glitch.me/api/?param={"movie_id":[tmdb_id1,tmdb_id2,...]}
 
 Example
-https://recsys-app.herokuapp.com/api/?param={"movie_id":[69757,69516]}
+[https://intelligent-aluminum-poison.glitch.me/api/?param={"movie_id":[69757,69516]}](https://intelligent-aluminum-poison.glitch.me/api/?param={"movie_id":[69757,69516]})
 
 <br>
 
