@@ -1,7 +1,7 @@
 
 
 ### Live Website
-https://recsys-app.herokuapp.com/
+https://intelligent-aluminum-poison.glitch.me/
 
 Rest API:
 https://intelligent-aluminum-poison.glitch.me/api/?param={"movie_id":[tmdb_id1,tmdb_id2,...]}
